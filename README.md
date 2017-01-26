@@ -106,7 +106,7 @@ See this section on <a href="https://github.com/Attrash-Islam/infinite-autocompl
   class App extends React.Component {
     render(){
       return <div>
-                <h1>It's working</h1>
+                <h1>Its working</h1>
                 <InfinityAutoComplete 
                     data={[
                       { text: 'hi', value: 'my buddy' },
