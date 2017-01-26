@@ -99,7 +99,7 @@ See this section on <a href="https://github.com/Attrash-Islam/infinite-autocompl
   
   class CustomInput extends InputComponent {
     render() {
-      return <input style="background: red;" />;
+      return '<input style="background: red;"/>';
     }
   }
   
