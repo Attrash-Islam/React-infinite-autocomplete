@@ -15,7 +15,7 @@ module.exports = {
   },
   externals: {
       // require(x) is external and available
-      "React": "react"
+      "react": "React"
   },
   plugins: [
 			// existing plugins go here

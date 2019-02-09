@@ -1,6 +1,6 @@
 {
   "name": "react-infinite-autocomplete",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "React.js infinite-autocomplete wrapper component",
   "main": "./dist/index.js",
   "typings": "react-infinite-autocomplete.d.ts",
