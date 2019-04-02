@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { InfiniteAutocomplete } from 'infinite-autocomplete';
-import { IInfinityAutoCompleteParams } from './Interfaces/params';
-import { Promise as es6Promise } from 'es6-promise';
+import InfiniteAutocomplete from 'infinite-autocomplete';
 
 /**
  * InfinityAutoComplete React Component
  * @extends React.Component
  * @author Islam Attrash
  */
-export class InfinityAutoComplete extends React.Component<IInfinityAutoCompleteParams, {}> {
+export default class InfinityAutoComplete extends React.PureComponent<any, {}> {
 
     /**
      * Base element for the infinite-autocomplete
@@ -26,152 +24,27 @@ export class InfinityAutoComplete extends React.Component<IInfinityAutoCompleteP
      */
     constructor(props) {
         super(props);
-    }
 
+        this.init = this.init.bind(this);
+    }
 
     /**
      * componentDidMount lifecycle hook
      */
     componentDidMount() {
-      this.plugin = new InfiniteAutocomplete(this.baseElement);
       this.init();
     }
 
-
-    /**
-     * Set the data infinite-autocomplete configuration
-     * @param data - Array of IOptions
-     */
-    private setData(data) {
-        this.plugin.setConfig({
-            data
-        });
+    componentDidUpdate() {
+        this.init();
     }
 
     /**
-     * Set the fetchSize infinite-autocomplete configuration
-     * @param fetchSize - Chunk size
+     * componentDidMount lifecycle hook
      */
-    private setFetchSize(fetchSize) {
-        this.plugin.setConfig({
-            fetchSize
-        });
-    }
-
-
-    /**
-     * Set the maxHeight infinite-autocomplete configuration
-     * @param maxHeight - Max height
-     */
-    private setMaxHeight(maxHeight) {
-        this.plugin.setConfig({
-            maxHeight
-        });
-    }
-
-
-    /**
-     * Set the customizedInput infinite-autocomplete configuration
-     * @param customizedInput - Customized input
-     */
-    private setCustomizedInput(customizedInput) {
-        this.plugin.setConfig({
-            customizedInput
-        });
-    }
-
-
-    /**
-     * Set the customizedOptions infinite-autocomplete configuration
-     * @param customizedOptions - Customized options
-     */
-    private setCustomizedOptions(customizedOptions) {
-        this.plugin.setConfig({
-            customizedOptions
-        });
-    }
-
-
-    /**
-     * initializing method
-     */
-    private init() {
-        
-        if(this.props.data) {
-            this.setData(this.props.data);
-        }
-
-        
-        if(this.props.fetchSize) {
-            this.setFetchSize(this.props.fetchSize);
-        }
-
-        if(this.props.maxHeight) {
-            this.setMaxHeight(this.props.maxHeight);
-        }
-
-        if(this.props.customizedInput) {
-            this.setCustomizedInput(this.props.customizedInput);
-        }
-
-        if(this.props.customizedOptions) {
-            this.setCustomizedOptions(this.props.customizedOptions);
-        }
-
-        if(this.props.onSelect) {
-            this.plugin.setConfig({
-                onSelect: (element, data) => {
-                    if(this.props.onSelect) {
-                        this.props.onSelect(element, data);
-                    }
-                }
-            });
-        }
-
-        if(this.props.getDataFromApi) {
-            this.plugin.setConfig({
-                getDataFromApi: (text, page, fetchSize) => {
-                    if(this.props.getDataFromApi) {
-                        return this
-                                .props
-                                .getDataFromApi(text, page, fetchSize);
-                    } else {
-                        return new es6Promise(resolve => resolve);
-                    }
-                }
-            });
-        }
-
-
-    }
-
-    
-    /**
-     * componentWillReceiveProps lifecycle hook
-     * @param nextProps - Next properties
-     */
-    componentWillReceiveProps(nextProps:any) {
-
-      if(nextProps.data && this.props.data !== nextProps.data) {
-        this.setData(nextProps.data);
-      }
-
-      if(nextProps.fetchSize && this.props.fetchSize !== nextProps.fetchSize) {
-        this.setFetchSize(nextProps.fetchSize);
-      }
-
-      if(nextProps.maxHeight && this.props.maxHeight !== nextProps.maxHeight) {
-          this.setMaxHeight(nextProps.maxHeight);
-      }
-      
-      if(nextProps.customizedInput && this.props.customizedInput !== nextProps.customizedInput) {
-          this.setCustomizedInput(nextProps.customizedInput);
-      }
-
-      if(nextProps.customizedOptions && this.props.customizedOptions !== nextProps.customizedOptions) {
-          this.setCustomizedOptions(nextProps.customizedOptions);
-      }
-
+    init() {
+        if (this.plugin) { this.plugin.destroy() };
+        this.plugin = InfiniteAutocomplete(this.props, this.baseElement);
     }
 
     /**
@@ -189,5 +62,4 @@ export class InfinityAutoComplete extends React.Component<IInfinityAutoCompleteP
     render() {
         return <div ref={(base) => this.baseElement = base }></div>;
     }
-
 }
