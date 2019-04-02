@@ -19,8 +19,8 @@ import React from 'react';
 import InfinityAutoComplete from 'react-infinite-autocomplete';
 
 <InfinityAutoComplete data={[
-    { text: 'hi', value: 'my buddy' },
-    { text: 'hi2', value: 'my buddy2' }
+    { text: 'hi', id: 'my buddy' },
+    { text: 'hi2', id: 'my buddy2' }
 ]}/>
 ```
 
