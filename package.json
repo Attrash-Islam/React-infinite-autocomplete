@@ -1,6 +1,6 @@
 {
   "name": "react-infinite-autocomplete",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "React.js infinite-autocomplete wrapper component",
   "main": "./dist/index.js",
   "scripts": {
@@ -41,6 +41,6 @@
     "webpack": "1.14.0"
   },
   "dependencies": {
-    "infinite-autocomplete": "^4.0.1"
+    "infinite-autocomplete": "^4.1.0"
   }
 }

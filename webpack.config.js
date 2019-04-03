@@ -7,6 +7,9 @@ module.exports = {
     // Add `.ts` as a resolvable extension.
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
+  output: {
+    library: 'InfiniteAutocomplete'
+  },
   module: {
     loaders: [
       // all files with a `.ts` extension will be handled by `ts-loader`

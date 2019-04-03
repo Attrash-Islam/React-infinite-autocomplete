@@ -6,7 +6,7 @@ import InfiniteAutocomplete from 'infinite-autocomplete';
  * @extends React.Component
  * @author Islam Attrash
  */
-export default class InfinityAutoComplete extends React.PureComponent<any, {}> {
+export default class InfinityAutoComplete extends React.Component<any, {}> {
 
     /**
      * Base element for the infinite-autocomplete
@@ -25,26 +25,54 @@ export default class InfinityAutoComplete extends React.PureComponent<any, {}> {
     constructor(props) {
         super(props);
 
-        this.init = this.init.bind(this);
+        this.update = this.update.bind(this);
     }
 
     /**
      * componentDidMount lifecycle hook
      */
     componentDidMount() {
-      this.init();
+      this.update({});
     }
 
-    componentDidUpdate() {
-        this.init();
+    componentDidUpdate(prevProps) {
+        this.update(prevProps);
     }
 
     /**
      * componentDidMount lifecycle hook
      */
-    init() {
-        if (this.plugin) { this.plugin.destroy() };
-        this.plugin = InfiniteAutocomplete(this.props, this.baseElement);
+    update(prevProps) {
+        if (!this.plugin) {
+            this.plugin = InfiniteAutocomplete(this.props, this.baseElement);
+            return;
+        }
+
+        const {
+            value,
+            fetchSize,
+            onSelect,
+            data
+        } = this.props;
+
+        let stateSlice = {};
+        if (value !== prevProps.value) {
+            stateSlice = { ...stateSlice, value };
+        };
+
+        if (fetchSize !== prevProps.fetchSize) {
+            stateSlice = { ...stateSlice, fetchSize };
+        };
+
+        if (onSelect !== prevProps.onSelect) {
+            stateSlice = { ...stateSlice, onSelect };
+        };
+
+        if (data !== prevProps.data) {
+            stateSlice = { ...stateSlice, data };
+        };
+
+        this.plugin.setState(stateSlice);
     }
 
     /**

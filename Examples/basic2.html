@@ -9,7 +9,7 @@
         
         <script>
             ReactDOM.render(
-                React.createElement(InfinityAutoComplete, {
+                React.createElement(InfiniteAutocomplete.default, {
                     data: function(text, page, fetchSize) {
                         return new Promise(function(resolve, reject) {
                             fetch(`http://localhost:5000/data?text=${text}&page=${page}&fetchSize=${fetchSize}`)

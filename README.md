@@ -16,9 +16,9 @@ $ npm i -S react-infinite-autocomplete
 
 ```js
 import React from 'react';
-import InfinityAutoComplete from 'react-infinite-autocomplete';
+import InfiniteAutocomplete from 'react-infinite-autocomplete';
 
-<InfinityAutoComplete data={[
+<InfiniteAutocomplete data={[
     { text: 'hi', id: 'my buddy' },
     { text: 'hi2', id: 'my buddy2' }
 ]}/>
